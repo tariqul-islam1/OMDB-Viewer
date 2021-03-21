@@ -13,4 +13,4 @@ Following is a list of what libraries I have used to make this app:
 ![Demo animation](https://github.com/tariqul-islam1/OMDB-Viewer/blob/main/demo400.gif)
 
 ## Note
-Please contact me if you find difficulty running the project or any unexpected crash, the app was running fine for my device and there's a lot of devices to test as you know :)
+Please contact me if you find difficulty running the project or any unexpected crash, the app was created as a one day app challenge and it was running fine for my device but there's a lot of devices to test as you know :)
