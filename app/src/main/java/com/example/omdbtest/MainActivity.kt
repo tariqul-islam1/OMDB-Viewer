@@ -148,7 +148,6 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-//                .delaySubscription(1, TimeUnit.SECONDS)
                 .map { it ->
                     it.totalResults?.let {
                         this.totalItems = it.toInt()
@@ -159,19 +158,21 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                     res?.let {
                         noResultMessageTV.visibility = View.INVISIBLE
                         itemCount += it.size
-                        if (currentPage != PAGE_START) adapter.removeLoading()
+                        if (currentPage != PAGE_START) {
+                            adapter.removeLoading()
+                        }
                         adapter.addItems(it)
                         swipeRefresh.isRefreshing = false
                         if (this.itemCount < this.totalItems) {
                             adapter.addLoading()
                         } else {
                             isLastPage = true
+                            adapter.removeLoading()
                         }
                         isLoading = false
                     }
                 }, { error ->
                     println(error.message)
-//                    adapter.removeLoading()
                     noResultMessageTV.visibility = View.VISIBLE
                 })
         this.compositeDisposable.add(disposable)

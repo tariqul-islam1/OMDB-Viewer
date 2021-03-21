@@ -9,10 +9,6 @@ abstract class PaginationListener(private var layoutManager: LinearLayoutManager
 
     companion object{
         val PAGE_START = 1
-        /**
-         * Set scrolling threshold here (for now i'm assuming 10 item in one page)
-         */
-        val PAGE_SIZE = 10
     }
 
 
