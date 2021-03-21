@@ -10,3 +10,6 @@ Following is a list of what libraries I have used to make this app:
 - Testing was done using Espresso and Junit
 
 ## Demo
+
+## Note
+Please contact me if you find difficulty running the project.
