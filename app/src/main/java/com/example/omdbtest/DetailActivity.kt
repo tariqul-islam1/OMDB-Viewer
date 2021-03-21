@@ -63,7 +63,7 @@ class DetailActivity : AppCompatActivity() {
         val disposable = OMDBService.create().getMovieDetails(OMDBService._API_KEY, searchResultItem.imdbID)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe ({
                 val info = java.lang.StringBuilder()
                 info.append(it.Rated)
                 info.append(" | ")
@@ -88,7 +88,12 @@ class DetailActivity : AppCompatActivity() {
                 this.directorTV.text = it.Director
                 this.writerTV.text = it.Writer
                 this.starringTV.text = it.Actors
-            }
+            }, { error ->
+                println(error.message)
+                this.directorTV.text = getString(R.string.not_available)
+                this.writerTV.text = getString(R.string.not_available)
+                this.starringTV.text = getString(R.string.not_available)
+        })
         this.compositeDisposable.add(disposable)
     }
 }

@@ -164,7 +164,9 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                     }
                 }, { error ->
                     println(error.message)
-                    noResultMessageTV.visibility = View.VISIBLE
+                    if(this.searchResultsRV.adapter?.itemCount == 0){
+                        noResultMessageTV.visibility = View.VISIBLE
+                    }
                 })
         this.compositeDisposable.add(disposable)
     }
