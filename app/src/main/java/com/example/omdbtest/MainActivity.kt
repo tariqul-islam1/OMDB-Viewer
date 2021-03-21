@@ -64,11 +64,15 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
         this.searchInputET.setOnEditorActionListener(this)
         val linearLayoutManager = LinearLayoutManager(this)
         this.searchResultsRV.layoutManager = linearLayoutManager
-        this.searchResultsRV.addOnScrollListener(object : PaginationListener(linearLayoutManager) {
+        this.searchResultsRV.addOnScrollListener(object : PaginationListener() {
             override fun loadMoreItems() {
                 isLoading = true
                 currentPage++
                 makeOMDBCall(searchInputET.text.toString())
+            }
+
+            override fun isSearchKeyEmpty(): Boolean {
+                return searchInputET.text.trim().toString().isEmpty()
             }
         })
     }
