@@ -16,11 +16,16 @@ import com.example.omdbtest.network.OMDBService
 import com.example.omdbtest.ui.PaginationListener
 import com.example.omdbtest.ui.PaginationListener.Companion.PAGE_START
 import com.example.omdbtest.ui.SearchAdapter
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
+import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, OnEditorActionListener {
+class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
+    OnEditorActionListener {
 
     private lateinit var compositeDisposable: CompositeDisposable
     private lateinit var swipeRefresh: SwipeRefreshLayout
@@ -88,8 +93,18 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, 
     }
 
     override fun onRefresh() {
-        clearMovieList()
-        makeOMDBCall(searchInputET.text.toString())
+        val searchKey = searchInputET.text.toString()
+        if (searchKey.isNotEmpty()) {
+            clearMovieList()
+            makeOMDBCall(searchKey)
+        } else {
+            val disposable = Observable.timer(200, TimeUnit.MICROSECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    swipeRefresh.isRefreshing = false
+                }
+            this.compositeDisposable.add(disposable)
+        }
     }
 
     private fun clearMovieList() {
@@ -121,12 +136,16 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener, 
     }
 
     private fun makeOMDBCall(searchKey: String) {
-        if (searchKey.trim().isEmpty()){
+        if (searchKey.trim().isEmpty()) {
             noResultMessageTV.visibility = View.VISIBLE
             return
         }
         val disposable =
-            this.omdbService.searchMovies(OMDBService._API_KEY, searchKey, this.currentPage.toString())
+            this.omdbService.searchMovies(
+                OMDBService._API_KEY,
+                searchKey,
+                this.currentPage.toString()
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 //                .delaySubscription(1, TimeUnit.SECONDS)
