@@ -41,10 +41,8 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        userSearchKeyNew = "sniper"
         initViews()
         setListenersToViews()
-//        makeOMDBCall("sniper")
     }
 
     private fun initViews() {
@@ -68,11 +66,11 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
             override fun loadMoreItems() {
                 isLoading = true
                 currentPage++
-                makeOMDBCall(searchInputET.text.toString())
+                makeOMDBCall()
             }
 
             override fun isSearchKeyEmpty(): Boolean {
-                return searchInputET.text.trim().toString().isEmpty()
+                return getUserSearchKey().isEmpty()
             }
         })
     }
@@ -86,10 +84,9 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
     }
 
     override fun onRefresh() {
-        val searchKey = searchInputET.text.toString()
-        if (searchKey.isNotEmpty()) {
+        if (getUserSearchKey().isNotEmpty()) {
             clearMovieList()
-            makeOMDBCall(searchKey)
+            makeOMDBCall()
         } else {
             val disposable = Observable.timer(200, TimeUnit.MICROSECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
@@ -98,6 +95,10 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                 }
             this.compositeDisposable.add(disposable)
         }
+    }
+
+    private fun getUserSearchKey(): String {
+        return searchInputET.text.trim().toString()
     }
 
     private fun clearMovieList() {
@@ -116,7 +117,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             hideKeyboard()
             clearMovieList()
-            makeOMDBCall(tv?.text.toString())
+            makeOMDBCall()
             return true
         }
         return false
@@ -125,18 +126,18 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
     fun search(view: View) {
         hideKeyboard()
         clearMovieList()
-        makeOMDBCall(searchInputET.text.toString())
+        makeOMDBCall()
     }
 
-    private fun makeOMDBCall(searchKey: String) {
-        if (searchKey.trim().isEmpty()) {
+    private fun makeOMDBCall() {
+        if (getUserSearchKey().isEmpty()) {
             noResultMessageTV.visibility = View.VISIBLE
             return
         }
         val disposable =
             this.omdbService.searchMovies(
                 OMDBService._API_KEY,
-                searchKey,
+                getUserSearchKey(),
                 this.currentPage.toString()
             )
                 .subscribeOn(Schedulers.io())
