@@ -42,8 +42,7 @@
                 android:onClick="search"
                 android:layout_margin="4dp"
                 android:id="@+id/searchButton"
-                android:background="@android:drawable/ic_menu_search"
-                android:backgroundTint="@color/purple_500"
+                android:background="@drawable/bg_search_button"
                 android:layout_width="32dp"
                 android:layout_height="32dp"/>
 
