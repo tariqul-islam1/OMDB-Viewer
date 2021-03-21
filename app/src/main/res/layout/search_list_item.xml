@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="4dp">
+
+        <com.example.omdbtest.ui.RoundedView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:topLeftCornerRadius="7dp"
+            app:bottomLeftCornerRadius="7dp">
+
+            <ImageView
+                android:layout_gravity="start"
+                android:id="@+id/postar"
+                android:layout_width="64dp"
+                android:layout_height="84dp"
+                android:contentDescription="@string/imdb_poster"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_gravity="start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/movieTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Mission impossible 3"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/releaseYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2011"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+        </com.example.omdbtest.ui.RoundedView>
+</androidx.cardview.widget.CardView>
