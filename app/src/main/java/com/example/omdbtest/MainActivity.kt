@@ -14,13 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.omdbtest.network.OMDBService
 import com.example.omdbtest.ui.PaginationListener
-import com.example.omdbtest.ui.PaginationListener.Companion.PAGE_START
+import com.example.omdbtest.ui.PaginationListener.Companion.pageStart
 import com.example.omdbtest.ui.SearchAdapter
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
@@ -34,9 +33,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
     private lateinit var omdbService: OMDBService
     private lateinit var searchInputET: EditText
     private lateinit var adapter: SearchAdapter
-    private var currentPage: Int = PAGE_START
-    private var isLastPage = false
-    private var isLoading = false
+    private var currentPage: Int = pageStart
     private var totalItems = 0
     private var itemCount = 0
 
@@ -73,14 +70,6 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                 currentPage++
                 makeOMDBCall(searchInputET.text.toString())
             }
-
-            override fun isLastPage(): Boolean {
-                return isLastPage
-            }
-
-            override fun isLoading(): Boolean {
-                return isLoading
-            }
         })
     }
 
@@ -109,8 +98,8 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
 
     private fun clearMovieList() {
         itemCount = 0
-        currentPage = PAGE_START
-        isLastPage = false
+        currentPage = pageStart
+        PaginationListener.isLastPage = false
         adapter.clear()
     }
 
@@ -158,7 +147,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                     res?.let {
                         noResultMessageTV.visibility = View.INVISIBLE
                         itemCount += it.size
-                        if (currentPage != PAGE_START) {
+                        if (currentPage != pageStart) {
                             adapter.removeLoading()
                         }
                         adapter.addItems(it)
@@ -166,10 +155,10 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
                         if (this.itemCount < this.totalItems) {
                             adapter.addLoading()
                         } else {
-                            isLastPage = true
+                            PaginationListener.isLastPage = true
                             adapter.removeLoading()
                         }
-                        isLoading = false
+                        PaginationListener.isLoading = false
                     }
                 }, { error ->
                     println(error.message)
