@@ -1,5 +1,6 @@
 package com.example.omdbtest.network
 
+import com.example.omdbtest.data.MovieDetailResponse
 import com.example.omdbtest.data.SearchResponse
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Observable
@@ -15,6 +16,12 @@ interface OMDBService {
         @Query("s") searchKey: String,
         @Query("page") page: String
     ): Observable<SearchResponse>
+
+    @GET(".")
+    fun getMovieDetails(
+        @Query("apikey") apikey: String,
+        @Query("i") movieId: String
+    ): Observable<MovieDetailResponse>
 
     companion object {
         const val _API_KEY = "146431c"

@@ -1,8 +1,8 @@
 <resources>
-	<string name="app_name">OMDBTest</string>
+    <string name="app_name">OMDB Viewer</string>
 
-	<string name="text_title">App that paginates!</string>
-	<string name="text_description">This app is a smooth paginating example...</string>
+    <string name="text_title">App that paginates!</string>
+    <string name="text_description">This app is a smooth paginating example...</string>
     <string name="imdb_poster">IMDB poster</string>
     <string name="search_open_movie_database">Search Open Movie Database</string>
     <string name="no_results_found">No results found!</string>

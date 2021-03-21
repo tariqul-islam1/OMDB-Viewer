@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".DetailActivity">
+
+    <Button
+        style="?attr/materialButtonStyle"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/back_button_bg"
+        android:onClick="goBack"
+        android:translationZ="99dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"/>
+
+            <TextView
+                android:paddingStart="@dimen/subViewPadding"
+                android:paddingEnd="@dimen/subViewPadding"
+                android:id="@+id/detailTitle"
+                style="@style/detailTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mission Impossible: Ghost rider" />
+
+            <TextView
+                android:padding="@dimen/subViewPadding"
+                android:id="@+id/detailInfo"
+                style="@style/detailInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PG | 124 min | Action, Adventure..." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/bigImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop" />
+
+                <!--            <LinearLayout-->
+                <!--                android:layout_width="match_parent"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:orientation="vertical"-->
+                <!--                android:padding="12dp">-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/title"-->
+                <!--                    style="@style/detailScreenTitle"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:textStyle="bold" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/description"-->
+                <!--                    style="@style/detailScreenDescription"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="16dp"-->
+                <!--                    android:text="@string/dog_description" />-->
+                <!--            </LinearLayout>-->
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

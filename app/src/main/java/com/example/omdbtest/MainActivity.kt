@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var searchResultsRV: RecyclerView
     private lateinit var noResultMessageTV: TextView
-    private lateinit var omdbService: OMDBService
     private lateinit var searchInputET: EditText
     private lateinit var adapter: SearchAdapter
     private var currentPage: Int = pageStart
@@ -51,7 +50,6 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
         this.swipeRefresh = findViewById(R.id.swipeRefresh)
         this.searchInputET = findViewById(R.id.searchInput)
         this.compositeDisposable = CompositeDisposable()
-        this.omdbService = OMDBService.create()
     }
 
     private fun setListenersToViews() {
@@ -134,7 +132,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
             return
         }
         val disposable =
-            this.omdbService.searchMovies(
+            OMDBService.create().searchMovies(
                 OMDBService._API_KEY,
                 getUserSearchKey(),
                 this.currentPage.toString()

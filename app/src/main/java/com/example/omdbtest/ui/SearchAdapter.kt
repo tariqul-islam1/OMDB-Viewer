@@ -1,11 +1,13 @@
 package com.example.omdbtest.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.omdbtest.DetailActivity
 import com.example.omdbtest.R
 import com.example.omdbtest.data.SearchResultItem
 import com.squareup.picasso.Picasso
@@ -99,10 +101,19 @@ class SearchAdapter(private val searchItems: MutableList<SearchResultItem>) :
             if(searchItems[position].Poster.isNotEmpty()){
                 Picasso.get().load(searchItems[position].Poster).into(poster)
             }
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, DetailActivity::class.java)
+                intent.putExtra(movieKey, searchItems[position])
+                it.context.startActivity(intent)
+            }
         }
     }
 
     class ProgressHolder internal constructor(itemView: View) : BaseViewHolder(itemView) {
         override fun clear() {}
+    }
+
+    companion object {
+        const val movieKey = "movieKey"
     }
 }

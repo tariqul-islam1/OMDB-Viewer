@@ -7,7 +7,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     app:cardCornerRadius="7dp"
-    android:background="@drawable/bg_search_list_item"
+    android:foreground="@drawable/bg_search_list_item"
     app:cardElevation="4dp">
 
         <com.example.omdbtest.ui.RoundedView
