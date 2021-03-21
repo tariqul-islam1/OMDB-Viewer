@@ -24,61 +24,92 @@
             android:orientation="vertical">
 
             <View
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"/>
+                android:layout_height="64dp"
+                android:background="@android:color/transparent" />
 
             <TextView
-                android:paddingStart="@dimen/subViewPadding"
-                android:paddingEnd="@dimen/subViewPadding"
+                android:layout_marginTop="8dp"
                 android:id="@+id/detailTitle"
                 style="@style/detailTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mission Impossible: Ghost rider" />
+                android:paddingStart="@dimen/viewSpacing"
+                android:paddingEnd="@dimen/viewSpacing"/>
 
             <TextView
-                android:padding="@dimen/subViewPadding"
                 android:id="@+id/detailInfo"
                 style="@style/detailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PG | 124 min | Action, Adventure..." />
+                android:padding="@dimen/viewSpacing"/>
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/bigImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                android:contentDescription="@string/poster_big" />
 
-                <ImageView
-                    android:id="@+id/bigImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:scaleType="centerCrop" />
+            <TextView
+                android:layout_margin="@dimen/viewSpacing"
+                android:id="@+id/rating"
+                style="@style/ratingInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-                <!--            <LinearLayout-->
-                <!--                android:layout_width="match_parent"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:orientation="vertical"-->
-                <!--                android:padding="12dp">-->
+            <TextView
+                android:layout_margin="@dimen/viewSpacing"
+                android:id="@+id/plot"
+                style="@style/smallerTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-                <!--                <TextView-->
-                <!--                    android:id="@+id/title"-->
-                <!--                    style="@style/detailScreenTitle"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:textStyle="bold" />-->
+            <TextView
+                android:layout_marginTop="@dimen/viewSpacing"
+                android:layout_marginStart="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-                <!--                <TextView-->
-                <!--                    android:id="@+id/description"-->
-                <!--                    style="@style/detailScreenDescription"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:layout_marginTop="16dp"-->
-                <!--                    android:text="@string/dog_description" />-->
-                <!--            </LinearLayout>-->
+            <TextView
+                android:id="@+id/director"
+                android:layout_marginStart="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            </LinearLayout>
+            <TextView
+                android:layout_marginTop="@dimen/viewSpacing"
+                android:layout_marginStart="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/writer"
+                android:layout_marginStart="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/viewSpacing"
+                android:layout_marginStart="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/starring"
+                android:layout_marginStart="@dimen/viewSpacing"
+                android:layout_marginBottom="@dimen/viewSpacing"
+                style="@style/smallerTexts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

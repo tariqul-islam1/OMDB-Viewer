@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="subViewPadding">8dp</dimen>
+    <dimen name="subViewSpacing">8dp</dimen>
+    <dimen name="viewSpacing">16dp</dimen>
 </resources>

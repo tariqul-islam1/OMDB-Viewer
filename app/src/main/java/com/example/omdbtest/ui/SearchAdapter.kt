@@ -19,7 +19,15 @@ class SearchAdapter(private val searchItems: MutableList<SearchResultItem>) :
     private var isLoaderVisible = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        if (viewType == VIEW_TYPE_NORMAL) {
+        if (viewType == VIEW_TYPE_LOADING) {
+            return ProgressHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_loading,
+                    parent,
+                    false
+                )
+            )
+        } else {
             return ViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.search_list_item,
@@ -27,14 +35,6 @@ class SearchAdapter(private val searchItems: MutableList<SearchResultItem>) :
                     false
                 ),
                 searchItems
-            )
-        } else {
-            return ProgressHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_loading,
-                    parent,
-                    false
-                )
             )
         }
     }

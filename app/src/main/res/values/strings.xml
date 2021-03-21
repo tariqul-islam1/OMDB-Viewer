@@ -6,4 +6,5 @@
     <string name="imdb_poster">IMDB poster</string>
     <string name="search_open_movie_database">Search Open Movie Database</string>
     <string name="no_results_found">No results found!</string>
+    <string name="poster_big">Poster big</string>
 </resources>
