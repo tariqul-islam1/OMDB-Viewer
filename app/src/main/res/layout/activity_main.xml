@@ -28,7 +28,6 @@
             tools:ignore="RtlSymmetry">
 
             <EditText
-                android:text="war"
                 android:id="@+id/searchInput"
                 android:layout_weight="5"
                 android:layout_width="0dp"
