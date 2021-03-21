@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener,
 
     private fun makeOMDBCall() {
         if (getUserSearchKey().isEmpty()) {
-            noResultMessageTV.visibility = View.VISIBLE
             return
         }
         val disposable =
